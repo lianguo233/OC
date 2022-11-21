@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js"> 
+<head>
+  
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i" rel="stylesheet">
+
+ 
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.1/style/jquery.jscrollpane.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+		 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		<title>意外</title>
+		
+		<style> 
+            @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+html { height: 100%; }
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	background: #fff;
+	font-weight: 500;
+	font-size: 100%;
+	color: #333;
+	height: 100%;
+    overflow-y: hidden;
+moz-user-select: -moz-none; 
+-moz-user-select: none; 
+-o-user-select:none; 
+-khtml-user-select:none; 
+-webkit-user-select:none; 
+-ms-user-select:none; 
+user-select:none;
+}
+
+.js body {
+	overflow: hidden;
+	
+}
+
+a {
+	color: #555;
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover {
+	color: #000;
+}
+
+.container,
+.bb-custom-wrapper,
+.bb-bookblock {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	position: relative;
+	left: 0px;
+	-webkit-transition: left 0.3s ease-in-out;
+	-o-transition: left 0.3s ease-in-out;
+	transition: left 0.3s ease-in-out;
+}
+
+.slideRight {
+	left: 240px;
+}
+
+.no-js .container {
+	padding-left: 240px;
+}
+
+.menu-panel {
+	background: #34495e;
+	width: 240px;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.js .menu-panel {
+	position: absolute;
+	left: -240px;
+}
+
+.menu-panel h3 {
+	font-size: 1.5em;
+	padding: 20px;
+	font-weight: 300;
+	color: #fff;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+     font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+    
+ 
+} 
+
+.menu-toc {
+	list-style: none;
+     
+}
+
+.menu-toc li a {
+	display: block;
+	color: #D1C0C0;
+	font-size: 1.1em;
+	line-height: 3.5;
+	padding: 0 20px;
+	cursor: pointer;
+	background: white;
+	border-bottom: 1px solid #ebebeb;
+    font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+    
+    
+}
+
+.menu-toc li a:hover,
+.menu-toc li.menu-toc-current a{
+	background: rgba(123,55,56,1.00);
+}
+
+.menu-panel div {
+	margin-top: 20px;
+}
+
+.menu-panel div a {
+	text-transform: uppercase;
+	font-size: 0.6em;
+	line-height: 1;
+	padding: 5px 20px;
+	display: block;
+	border: none;
+	color: #bc0b0b;
+	letter-spacing: 1px;
+	font-weight: 800;
+	text-shadow: 0 1px rgba(255,255,255,0.2);
+} 
+
+.menu-panel div a:hover {
+	background: inherit;
+	color: #fff;
+	text-shadow: none;
+}
+
+.bb-custom-wrapper nav {
+	top: 20px;
+	left: 60px;
+	position: absolute;
+	z-index: 1000;
+}
+
+.bb-custom-wrapper nav span,
+.menu-button {
+	position: absolute;
+	width: 42px;
+	height: 42px;
+	top: 0;
+	left: 0;
+    
+	background: rgba(123,55,56,1.00);
+	border-radius: 50%;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
+	speak: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+ 
+.bb-custom-wrapper nav span:last-child {
+	left: 50px;
+}
+
+.menu-button {
+	z-index: 1000;
+	left: 10px;
+	top: 20px;
+	text-indent: -9000px;
+}
+
+.menu-button:after {
+	position: absolute;
+	content: '';
+	width: 50%;
+	height: 2px;
+	background: #fff;
+	top: 50%;
+	margin-top: -1px;
+	left: 25%;
+	box-shadow: 0 -4px #fff, 0 4px #fff;
+}
+
+ 
+
+.js .content {
+	position: absolute;
+	top: 60px;
+	left: 0;
+	width: 100%;
+	bottom: 50px;
+	overflow: hidden;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+.scroller {
+	padding: 10px 5% 10px 5%;
+}
+
+ 
+
+.content h2 {
+	font-weight: 300;
+	font-size: 2em;
+	padding: 0 0 10px;
+	color: #333;
+	margin: 0 8% 10px;
+	text-align: center;
+	box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+	text-shadow: 0 0 2px #fff;
+    font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+	
+	
+}
+
+.no-js .content h2 {
+	padding: 40px 1% 20px;
+    
+}
+
+.content p {
+	font-size: 1.1em;
+	line-height: 1.6;
+	font-weight: 420;
+	padding: 5px 8%;
+	text-align: justify;
+      font-family: 'Roboto Condensed', sans-serif;
+    color: black;
+	
+    
+}
+
+	
+            
+            
+       </style>
+		
+		
+		
+		
+		
+		
+	</head>
+	<body>
+		<div id="container" class="container">
+			<div class="menu-panel">
+				<h3>Table of Contents</h3>
+				<ul id="menu-toc" class="menu-toc">
+					<li class="menu-toc-current"><a href="#item1">人设：阮幼慈</a></li>
+					<li><a href="#item2">人设：傅涵</a></li>
+					<li><a href="#item3">剧情简介</a></li>
+					<li><a href="#item4">剧情节选</a></li>
+					<li><a href="#item5">其他</a></li>
+				</ul>
+				 
+			</div>
+
+			<div class="bb-custom-wrapper">
+				<div id="bb-bookblock" class="bb-bookblock">
+					
+					<div class="bb-item" id="item1">
+						
+						<div class="content">
+							
+							<div class="scroller">
+							<br>
+								<h2><img src="ruanyouci.png" width="120" height="120">
+									<br>阮幼慈</h2>
+								
+								<br>
+								<p>学生证：</p>
+								<p><img src="ruancard.png" width="70%"></p>
+								<br><br>
+								<p>神秘的转学生，有着莫名的气场，所有人都对她很客气。</p>
+								<p>在学校有着许多特殊待遇。</p>
+						 
+								 
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item2">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2><img src="fuhan.png" width="120" height="120"><br>傅涵</h2>
+								<br>
+								<p>学生证：</p>
+								<p><img src="fucard.png" width="70%"></p>
+								<br><br>
+								<p>不起眼的优等生。</p>
+								<p>父母很有钱，但常年在国外，自己一个人居住。</p>
+								<p>之前经常被所谓“朋友”借钱，也经常挨打，不合群。</p>
+								<p>直到那个转学生的出现改变了这一切。</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item3">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2>剧情简介</h2>
+								<br>
+								<p>百合、校园、双箭头、双向救赎。</p>
+								<p>腹黑病娇御姐×痴汉萌妹</p>
+							
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item4">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2>剧情节选</h2>
+								<br><br>
+								<p>我感觉被她碰到的地方倏地变得滚烫，那样令灵魂都为之战栗的温度从指尖一直攀援至大脑，流向四肢百骸，以至于我从脸颊开始全身都红了。明明我不是一个情绪强烈的人，可面对她的时候，我总是不受控制地出糗：“不、不是你的错，你不用……道歉的。”说着，我飞快地把手抽出来，假装突然对英语单词产生了莫大的兴趣，不敢看她。</p>
+								<p>我知道她又在逗我了。她知道我能容忍她的一切玩笑。</p>
+								<p>甚至，她可能已经发现了我那隐秘不能与人言说的爱情。</p>
+								<p>然而在她眼中，这一切都是玩笑。</p>
+								<p>我不在乎，即使在她眼里，我只是一个笑话，一个可怜虫，一个无名氏，我也不在乎，也没有资格在乎……</p>
+								<p>“错了，”她葱白修长的手指又出现在我的视线里，随之而来的是她一贯漫不经心带着调笑的口吻，替我翻了一页，“今天老师听写四单元，不是三单元。”</p>
+								<p>我的脸又“腾”地烧红了。</p>
+								
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item5">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2>其他</h2>
+								<br>
+								<p>已完结，全文不长，慢慢码。</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<nav>
+					<span id="bb-nav-prev">&larr;</span>
+					<span id="bb-nav-next">&rarr;</span>
+				</nav>
+
+				<span id="tblcontents" class="menu-button">Table of Contents</span>
+
+			</div>
+				
+		</div><!-- /container -->
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.1/script/jquery.jscrollpane.min.js"></script>
+		 
+		<script src="js/jquery.bookblock.js"></script>
+		<script src="js/page.js"></script>
+		<script>
+			$(function() {
+
+				Page.init();
+
+			});
+		</script>
+	</body>
+
+ 
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js"> 
+<head>
+  
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i" rel="stylesheet">
+
+ 
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.1/style/jquery.jscrollpane.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+		 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		<title>渐近线</title>
+		
+		<style> 
+            @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+html { height: 100%; }
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	background: #fff;
+	font-weight: 500;
+	font-size: 100%;
+	color: #333;
+	height: 100%;
+    overflow-y: hidden;
+moz-user-select: -moz-none; 
+-moz-user-select: none; 
+-o-user-select:none; 
+-khtml-user-select:none; 
+-webkit-user-select:none; 
+-ms-user-select:none; 
+user-select:none;
+}
+
+.js body {
+	overflow: hidden;
+	
+}
+
+a {
+	color: #555;
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover {
+	color: #000;
+}
+
+.container,
+.bb-custom-wrapper,
+.bb-bookblock {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	position: relative;
+	left: 0px;
+	-webkit-transition: left 0.3s ease-in-out;
+	-o-transition: left 0.3s ease-in-out;
+	transition: left 0.3s ease-in-out;
+}
+
+.slideRight {
+	left: 240px;
+}
+
+.no-js .container {
+	padding-left: 240px;
+}
+
+.menu-panel {
+	background: #34495e;
+	width: 240px;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.js .menu-panel {
+	position: absolute;
+	left: -240px;
+}
+
+.menu-panel h3 {
+	font-size: 1.5em;
+	padding: 20px;
+	font-weight: 300;
+	color: #fff;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+     font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+    
+ 
+} 
+
+.menu-toc {
+	list-style: none;
+     
+}
+
+.menu-toc li a {
+	display: block;
+	color: #D1C0C0;
+	font-size: 1.1em;
+	line-height: 3.5;
+	padding: 0 20px;
+	cursor: pointer;
+	background: white;
+	border-bottom: 1px solid #ebebeb;
+    font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+    
+    
+}
+
+.menu-toc li a:hover,
+.menu-toc li.menu-toc-current a{
+	background: rgba(123,55,56,1.00);
+}
+
+.menu-panel div {
+	margin-top: 20px;
+}
+
+.menu-panel div a {
+	text-transform: uppercase;
+	font-size: 0.6em;
+	line-height: 1;
+	padding: 5px 20px;
+	display: block;
+	border: none;
+	color: #bc0b0b;
+	letter-spacing: 1px;
+	font-weight: 800;
+	text-shadow: 0 1px rgba(255,255,255,0.2);
+} 
+
+.menu-panel div a:hover {
+	background: inherit;
+	color: #fff;
+	text-shadow: none;
+}
+
+.bb-custom-wrapper nav {
+	top: 20px;
+	left: 60px;
+	position: absolute;
+	z-index: 1000;
+}
+
+.bb-custom-wrapper nav span,
+.menu-button {
+	position: absolute;
+	width: 42px;
+	height: 42px;
+	top: 0;
+	left: 0;
+    
+	background: rgba(123,55,56,1.00);
+	border-radius: 50%;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
+	speak: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+ 
+.bb-custom-wrapper nav span:last-child {
+	left: 50px;
+}
+
+.menu-button {
+	z-index: 1000;
+	left: 10px;
+	top: 20px;
+	text-indent: -9000px;
+}
+
+.menu-button:after {
+	position: absolute;
+	content: '';
+	width: 50%;
+	height: 2px;
+	background: #fff;
+	top: 50%;
+	margin-top: -1px;
+	left: 25%;
+	box-shadow: 0 -4px #fff, 0 4px #fff;
+}
+
+ 
+
+.js .content {
+	position: absolute;
+	top: 60px;
+	left: 0;
+	width: 100%;
+	bottom: 50px;
+	overflow: hidden;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+.scroller {
+	padding: 10px 5% 10px 5%;
+}
+
+ 
+
+.content h2 {
+	font-weight: 300;
+	font-size: 2em;
+	padding: 0 0 10px;
+	color: #333;
+	margin: 0 8% 10px;
+	text-align: center;
+	box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+	text-shadow: 0 0 2px #fff;
+    font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+	
+	
+}
+
+.no-js .content h2 {
+	padding: 40px 1% 20px;
+    
+}
+
+.content p {
+	font-size: 1.1em;
+	line-height: 1.6;
+	font-weight: 420;
+	padding: 5px 8%;
+	text-align: justify;
+      font-family: 'Roboto Condensed', sans-serif;
+    color: black;
+	
+    
+}
+
+	
+            
+            
+       </style>
+		
+		
+		
+		
+		
+		
+	</head>
+	<body>
+		<div id="container" class="container">
+			<div class="menu-panel">
+				<h3>Table of Contents</h3>
+				<ul id="menu-toc" class="menu-toc">
+					<li class="menu-toc-current"><a href="#item1">人设：徐字</a></li>
+					<li><a href="#item2">人设：冉江</a></li>
+					<li><a href="#item3">人设：宁鸿</a></li>
+					<li><a href="#item4">人设：尹澜</a></li>
+					<li><a href="#item5">剧情简介</a></li>
+					<li><a href="#item6">剧情节选</a></li>
+					<li><a href="#item7">其他</a></li>
+				</ul>
+				 
+			</div>
+
+			<div class="bb-custom-wrapper">
+				<div id="bb-bookblock" class="bb-bookblock">
+					
+					<div class="bb-item" id="item1">
+						
+						<div class="content">
+							
+							<div class="scroller">
+							<br>
+								<h2><img src="徐字.png" width="120" height="120">
+									<br>徐字</h2>
+								
+								<br>
+								<p>性格跳脱开朗的男高。</p>
+						 		<p>和数学老师同居中。</p>
+								 
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item2">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2><img src="冉江.png" width="120" height="120"><br>冉江</h2>
+								<br>
+								
+								<p>沉默寡言的学术派理科男。</p>
+								<p>和学生徐字交往中。</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item3">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2><img src="宁鸿.png" width="120" height="120"><br>宁鸿</h2>
+								<br>
+								<p>单纯天真的小少爷。</p>
+								<p>脾气很好，有点颜控。</p>
+
+							
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item4">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2><img src="尹澜.png" width="120" height="120"><br>尹澜</h2>
+								<br><br>
+								<p>雌雄莫辨的混血摄影师。</p>
+								<p>在A城采风时意外遇见了很合自己胃口的人。</p>
+								
+
+								
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item5">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2>剧情简介</h2>
+								<br>
+								<p>“我们两个就像渐近线一样，永远向彼此靠近。不相交也没有关系——相交一瞬便会分开，而我们的故事永远在接近，永远不会结束。”</p>
+								<br>
+								<p>闷骚面瘫数学老师×开朗元气学霸</p>
+								<p>副cp是腹黑御姐（？）摄影师×傻白甜官二代</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item6">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2>剧情节选</h2>
+								<br>
+								<p>午后蝉鸣聒噪，呼吸似地一起一伏，把日头不知不觉往西推去。</p>
+								<p>徐字稍显困倦地托着脸，有一搭没一搭地听着例题，摊开练习册用铅笔在上面写写画画。</p>
+								<p>同桌手忙脚乱地一会儿抬头看板书一会儿埋头苦记，把自己搞得晕头转向。趁着老师背过身去整理板书时，他赶紧戳戳徐字：“徐小字快快快，上两步笔记借我抄一下——”边说着边伸长脖子去看徐字的练习册。</p>
+								<p>只见例题留出的空白处，画着一个Q版小人，和讲台上面无表情的数学老师简直一模一样。</p>
+								<p>同桌：“……”</p>
+								<p>徐字这才回过神来似地：“啊？什么？我没听讲啊？唔——中午没睡觉，现在好困……”他动作极轻地伸了个懒腰，把椅子往后翘，抬手挡了挡窗外漏进来的阳光，没有一点想听课的意思。</p>
+								<p>同桌看着这位数学第一，心悦诚服道：“兄弟，今晚的数学作业就靠你了，谢谢。”</p>
+								<p>徐字一点儿不谦虚，眯着眼睛笑起来：“好说好说。”</p>
+								<p>“刘子簿。”</p>
+								<p>数学老师停下板书的最后一笔，细框眼镜下没什么温度的目光扫过徐字，略微停顿了一下才喊出同桌的名字。</p>
+								<p>上课本来就没听懂，还被抓到和徐字聊天，刘子簿被老师这么一喊，欲盖弥彰地绷直了背，把头转过来，却不敢与老师对视。他用余光试探地瞥了徐字一眼，后者幸灾乐祸地抿着唇笑，冲他耸了耸肩。</p>
+								<p>刘子簿在只有蝉声乱窜的教室里战战兢兢地站起来，脸都白了，带着一副英勇就义的表情。</p>
+								<p>“你重复一遍这道题的思路。”数学老师冷淡的声音响起。</p>
+								<p>拼命回想自己刚才的笔记，刘子不试探的开口回答道：“这道题已知……是离心率……还有，还有过焦点的直线，根据……呃，根据……”堪堪把题目已知念了一遍，他就卡壳了。</p>
+								<p>本来就冷得掉渣的数学课瞬间来到北极冰川。</p>
+								<p>数学老师似笑非笑地打量着刘子簿，没急着提醒他，让刘子簿深感压迫。</p>
+								<p>刘子簿绞尽脑汁打算说点什么来挽救一下，就被数学老师打断了。</p>
+								<p>“徐字。”</p>
+								<p>徐字大约没想过自己会被点名，愣了一下：“啊？喊我吗？”班上响起几处窃窃的笑。他故作惊慌地吸了口气，这才站起身，倒也不紧张。</p>
+								<p>徐字是那种长得斯文秀气成绩好性格又有意思的那种人，不仅讨小女生们喜欢，也让男生讨厌不起来，还讨各种老师喜欢——除了数学老师冉江，也许吧。</p>
+								<p>冉江随时随地都是那样不绷不笑的冰山脸，偶尔露出一点儿皮笑肉不笑的鬼畜表情，堪称w高最不好接近的老师之一。虽然平时徐字总考第一，也总上课不听讲，可冉老师既没对徐字有多看重，也没有放任他走神走到底，偶尔还要抽他起来回答问题。徐字还是数学课代表，偶尔能看见他和冉江一起去食堂，但也没见两人有多熟络。</p>
+								<p>刘子簿在徐字站起来的时候，把种种传闻八卦在脑海里过了一遍，虽然还顶着冉江颇具威力的目光站着，已然和坐着的同学一样吃起瓜来。</p>
+								<p>徐字当然不知道一脸姨母笑的刘子簿在笑什么，刚刚走神的功夫，他盯着冉江想：这个老男人果然戴了我买的领带，啧，还真挺帅的。</p>
+								<p>嗯，他买的。</p>
+								<p>他想着这个心里就抑制不住的得意，天生带笑的嘴角不自觉的翘高了半分。</p>
+								<p>他把视线从领带上收回来，略一读题，是在讲昨天作业的一道典例。他撑着课桌，不太经意又清晰地接着刘子簿的思路说下去：“由已知可以用弦长公式把k表示出来......”</p>
+								<p>题答完了，徐字怎么看那条领带怎么满意，在冉江叫他坐下之前，忍不住抢白：“冉老师，您今天的领带可真帅！”</p>
+								<p>话音刚落，全班都哄笑起来。</p>
+								<p>大概除了徐字，也没人敢在数学课上敢对这么严肃的冉老师开玩笑了吧。</p>
+								<p>冉江今天的打扮和往常一样，白衬衫加西裤，严谨正式得马上拉去开董事会都没问题。领带则是上个周末徐字给他挑的。深灰色格纹，很衬他的银灰细框眼镜和那张禁欲脸。</p>
+								<p>冉江以不变应万变，仿佛并没有听见徐字的调侃：“谢谢徐字同学的解答，请坐。”</p>
+								<p>说谢谢的时候冉江微不可闻地停顿了一下，徐字敏锐地从他那波澜不惊的脸上读出了“谢谢，各种意义上”的一层意思，在心底悄悄乐开了花。</p>
+								<p>徐字倒是坐下了，刘子簿则被冉江不知有意还是无意地晾在了那里，他自知理亏，只有乖乖站着听讲。</p>
+								<p>徐字坐下后盯着冉江擦黑板的背影勾了勾唇角。</p>
+								<p>刘子簿：“徐小字，你干嘛笑的这么恶心？”</p>
+								<p>徐字沉浸在暗秀了一波没有人发现的诡异快乐之中，美滋滋地回答：“你不懂。”</p>
+								<p>刘子簿：“……”</p>
+								<p>坐下之后徐字继续在书上画刚刚没画完的冉江，刘子簿看不下去了：“为什么我每天拼死拼活地上数学课还考不过你分数的一半？这就是人与人之间的差距吗？？”</p>
+								<p>徐字一边画画一边毫无感情道：“哈哈。”</p>
+								<p>“......你听听，你听听这是人话吗！”</p>
+								<p>刘子簿前桌的妹子暴躁地转过头：“干，你们能不讲话了吗？！”</p>
+								<p>刘子簿瞬间怂了，在嘴上做了个拉拉链的动作。徐字则若有所思地抬眼看了看前桌的背影，转了一下手中的笔，眉头轻轻蹙起来。</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="bb-item" id="item7">
+						<div class="content">
+							<div class="scroller">
+							<br>
+								<h2>其他</h2>
+								<br>
+								<p>海棠有摸鱼车。</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<nav>
+					<span id="bb-nav-prev">&larr;</span>
+					<span id="bb-nav-next">&rarr;</span>
+				</nav>
+
+				<span id="tblcontents" class="menu-button">Table of Contents</span>
+
+			</div>
+				
+		</div><!-- /container -->
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.1/script/jquery.jscrollpane.min.js"></script>
+		 
+		<script src="js/jquery.bookblock.js"></script>
+		<script src="js/page.js"></script>
+		<script>
+			$(function() {
+
+				Page.init();
+
+			});
+		</script>
+	</body>
+
+ 
+</html>
